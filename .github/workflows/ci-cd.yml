@@ -37,8 +37,14 @@ jobs:
         # Clone the Hugging Face Space repository
         git clone https://huggingface.co/spaces/Bilal-Anjum/ML-App
         
-        # Copy files to the Hugging Face Space directory
         cd ML-App
+
+        # Pull the latest changes
+        git fetch --unshallow
+        git pull origin main
+
+        # Copy files to the Hugging Face Space directory
+
         rsync -av --exclude ML-App/ ../ ./
 
         
@@ -49,4 +55,4 @@ jobs:
         # Commit changes (ignore empty commits)
         git commit -m "Update Hugging Face Space" || echo "No changes to commit"
                 
-        git push --force https://user:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/Bilal-Anjum/ML-App HEAD:main
+        git push  https://user:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/Bilal-Anjum/ML-App HEAD:main
