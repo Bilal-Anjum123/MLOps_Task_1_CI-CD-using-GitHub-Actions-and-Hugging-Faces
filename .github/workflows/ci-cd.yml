@@ -54,4 +54,4 @@ jobs:
         # Commit changes (ignore empty commits)
         git commit -m "Update Hugging Face Space" || echo "No changes to commit"
                 
-        git push  https://user:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/Bilal-Anjum/ML-App HEAD:main
+        git push --force https://user:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/Bilal-Anjum/ML-App HEAD:main
