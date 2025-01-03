@@ -40,7 +40,6 @@ jobs:
         cd ML-App
 
         # Pull the latest changes
-        git fetch --unshallow
         git pull origin main
 
         # Copy files to the Hugging Face Space directory
