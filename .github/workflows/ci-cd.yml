@@ -22,7 +22,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-
     - name: Deploy to Hugging Face Space
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -37,21 +36,14 @@ jobs:
         # Clone the Hugging Face Space repository
         git clone https://huggingface.co/spaces/Bilal-Anjum/ML-App
         
-        cd ML-App
-
-        # Pull the latest changes
-        git pull origin main
-
         # Copy files to the Hugging Face Space directory
-
-        rsync -av --exclude ML-App/ ../ ./
-
         
-
-        # Stage all changes
+        # Commit and push changes
+        cd ML-App
+        # Pull latest changes from the remote branch
+        git pull origin main --rebase
+        
+        rsync -av --exclude ML-App/ ./ ML-App/
         git add .
-        
-        # Commit changes (ignore empty commits)
-        git commit -m "Update Hugging Face Space" || echo "No changes to commit"
-                
-        git push --force https://user:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/Bilal-Anjum/ML-App
+        git commit -m "Update Hugging Face Space"
+        git push https://user:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/Bilal-Anjum/ML-App HEAD:main
