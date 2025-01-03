@@ -35,14 +35,15 @@ jobs:
         
         # Clone the Hugging Face Space repository
         git clone https://huggingface.co/spaces/Bilal-Anjum/ML-App hf-space
-        # Copy files to the Hugging Face Space directory
         
-        rsync -av --exclude hf-space/ ./ hf-space/
-
+        # Copy files to the Hugging Face Space directory
         
         # Commit and push changes
         cd hf-space
+        # Pull latest changes from the remote branch
+        git pull origin main --rebase
         
+        rsync -av --exclude hf-space/ ./ hf-space/
         git add .
         git commit -m "Update Hugging Face Space"
         git push https://user:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/Bilal-Anjum/ML-App HEAD:main
