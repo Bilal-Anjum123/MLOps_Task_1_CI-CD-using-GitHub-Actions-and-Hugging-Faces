@@ -32,8 +32,7 @@ jobs:
         
         # Clone the Hugging Face Space repository
         git clone https://huggingface.co/spaces/Bilal-Anjum/ML-App
-        cp -r * ML-App/
-
+        rsync -av --exclude ML-App/ ./ ML-App/
         # Commit and push updates to the Space
         cd ML-App
         git add .
