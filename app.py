@@ -11,7 +11,7 @@ with open("model.pkl", "rb") as f:
 def predict(median_income):
     income = [[float(median_income)]]  # Convert input to 2D array
     prediction = model.predict(income)[0]  # Get the predicted value
-    return f"Predicted Median House Value: ${prediction * 100000:.2f}"
+    return f"Predicted Median House Value for Purchasing: ${prediction * 100000:.2f}"
 
 # Create a Gradio interface
 interface = gr.Interface(
