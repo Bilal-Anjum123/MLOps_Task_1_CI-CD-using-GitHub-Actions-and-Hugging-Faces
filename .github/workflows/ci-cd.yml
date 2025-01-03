@@ -3,7 +3,7 @@ name: Deploy to Hugging Face Spaces
 on:
   push:
     branches:
-      - main  # Trigger workflow on pushes to the main branch
+      - main
 
 jobs:
   deploy:
@@ -27,13 +27,20 @@ jobs:
       env:
         HF_TOKEN: ${{ secrets.HF_TOKEN }}
       run: |
+        # Set Git username and email
+        git config --global user.name "Bilal-Anjum123"
+        git config --global user.email "bilalanjum.ds@gmail.com"
+        
         # Install Git LFS
         git lfs install
         
         # Clone the Hugging Face Space repository
         git clone https://huggingface.co/spaces/Bilal-Anjum/ML-App
+        
+        # Copy files to the Hugging Face Space directory
         rsync -av --exclude ML-App/ ./ ML-App/
-        # Commit and push updates to the Space
+        
+        # Commit and push changes
         cd ML-App
         git add .
         git commit -m "Update Hugging Face Space"
