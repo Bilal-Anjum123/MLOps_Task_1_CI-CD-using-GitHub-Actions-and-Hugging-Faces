@@ -43,9 +43,6 @@ jobs:
         # Commit and push changes
         cd hf-space
         
-        # Pull latest changes from the remote branch
-        git pull origin main --rebase
-        
         git add .
         git commit -m "Update Hugging Face Space"
         git push https://user:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/Bilal-Anjum/ML-App HEAD:main
