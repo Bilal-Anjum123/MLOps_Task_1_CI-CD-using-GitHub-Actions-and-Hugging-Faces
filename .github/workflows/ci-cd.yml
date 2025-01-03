@@ -31,11 +31,11 @@ jobs:
         git lfs install
         
         # Clone the Hugging Face Space repository
-        git clone https://huggingface.co/spaces/<username>/<space-name> hf-space
-        cp -r * hf-space/
+        git clone https://huggingface.co/spaces/Bilal-Anjum/ML-App
+        cp -r * ML-App/
 
         # Commit and push updates to the Space
-        cd hf-space
+        cd ML-App
         git add .
         git commit -m "Update Hugging Face Space"
         git push
