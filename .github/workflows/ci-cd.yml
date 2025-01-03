@@ -38,6 +38,8 @@ jobs:
         git clone https://huggingface.co/spaces/Bilal-Anjum/ML-App
         
         # Copy files to the Hugging Face Space directory
+        rsync -av --exclude ML-App/ ./ ML-App/
+
         
         # Commit and push changes
         cd ML-App
@@ -45,7 +47,6 @@ jobs:
         # Pull latest changes from the remote branch
         git pull origin main --rebase
         
-        rsync -av --exclude ML-App/ ./ ML-App/
 
 
         git add .
